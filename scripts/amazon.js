@@ -1,6 +1,6 @@
 import { cart,addtocart } from "../data/cart.js";
 import {products} from "../data/products.js"
-
+import { formatCurrency } from "./utils/money.js";
 // const products=[
 //     {
 //     image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
@@ -90,7 +90,7 @@ products.forEach((product)=>{
           </div>
 
           <div class="product-price">
-            $${(product.priceCents/100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -131,6 +131,7 @@ function updatecart()
     let cartQuantity=0;
     cart.forEach((item)=>{
     cartQuantity +=item.quantity;
+    document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
     })
 }
 document.querySelectorAll('.js-add-to-cart')
@@ -140,7 +141,7 @@ document.querySelectorAll('.js-add-to-cart')
        addtocart(productId);
         updatecart();
           
-         document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
+
 
         
     })
